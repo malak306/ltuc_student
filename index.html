@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LTUC Employee Management System</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="background-blobs">
+        <div class="blob blob-1"></div>
+        <div class="blob blob-2"></div>
+        <div class="blob blob-3"></div>
+    </div>
+    
+    <main class="container">
+        <header>
+            <h1>LTUC <span>Employee Portal</span></h1>
+            <p>Modern management interface for LTUC staff across all branches.</p>
+        </header>
+
+        <section class="form-card glass">
+            <h2 id="form-title">Add New Employee</h2>
+            <form id="employee-form" autocomplete="off">
+                <input type="hidden" id="edit-index" value="">
+                <div class="input-grid">
+                    <div class="input-group">
+                        <label for="emp-id">Employee ID</label>
+                        <input type="text" id="emp-id" placeholder="e.g. 1001" required>
+                    </div>
+                    <div class="input-group">
+                        <label for="emp-name">Full Name</label>
+                        <input type="text" id="emp-name" placeholder="John Doe" required>
+                    </div>
+                    <div class="input-group">
+                        <label for="emp-age">Age</label>
+                        <input type="number" id="emp-age" placeholder="25" min="18" max="70" required>
+                    </div>
+                    <div class="input-group">
+                        <label for="emp-address">Current Address</label>
+                        <input type="text" id="emp-address" placeholder="Amman, Jordan" required>
+                    </div>
+                </div>
+                <div class="form-actions">
+                    <button type="submit" id="submit-btn" class="btn primary">Save Employee</button>
+                    <button type="button" id="cancel-btn" class="btn secondary hidden">Cancel Edit</button>
+                </div>
+            </form>
+        </section>
+
+        <section class="table-card glass">
+            <div class="table-header">
+                <h2>Employee Directory</h2>
+                <div class="search-box">
+                    <input type="text" id="search-input" placeholder="Search employees...">
+                </div>
+            </div>
+            <div class="table-container">
+                <table id="employee-table">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Name</th>
+                            <th>Age</th>
+                            <th>Address</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="employee-list">
+                        <!-- Data will be populated here by JavaScript -->
+                    </tbody>
+                </table>
+            </div>
+            <div id="empty-state" class="empty-state hidden">
+                <img src="https://img.icons8.com/isometric/100/null/empty-box.png" alt="Empty">
+                <p>No employees found. Start by adding one above!</p>
+            </div>
+        </section>
+    </main>
+
+    <div id="toast" class="toast">Action completed successfully!</div>
+
+    <script src="app.js"></script>
+</body>
+</html>
