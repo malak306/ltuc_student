@@ -1,0 +1,7 @@
+.git
+.gemini
+.vscode
+Dockerfile
+.dockerignore
+node_modules
+*.md
