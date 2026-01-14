@@ -1,0 +1,27 @@
+name: Test SSH Connection
+
+on:
+  workflow_dispatch:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Save SSH key
+        run: |
+          mkdir -p ~/.ssh
+          echo "${{ secrets.EC2_SSH_KEY }}" > ~/.ssh/id_rsa
+          chmod 600 ~/.ssh/id_rsa
+          echo "✅ Key saved"
+          echo "First line: $(head -1 ~/.ssh/id_rsa)"
+          echo "Last line: $(tail -1 ~/.ssh/id_rsa)"
+
+      - name: Test connection
+        run: |
+          ssh-keyscan -H ${{ secrets.EC2_HOST }} >> ~/.ssh/known_hosts
+          echo "Testing connection to ${{ secrets.EC2_HOST }}..."
+          ssh -i ~/.ssh/id_rsa \
+            -o ConnectTimeout=10 \
+            -o BatchMode=yes \
+            ${{ secrets.EC2_USER }}@${{ secrets.EC2_HOST }} "echo '✅ SSH successful!'" \
+            && echo "🎉 SSH works!" || echo "❌ SSH failed"
